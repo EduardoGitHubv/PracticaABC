@@ -1,0 +1,67 @@
+﻿@model PracticaABC.Models.ViewModel.ViewProducto
+@{
+    ViewData["Title"] = "Producto Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.idProducto.IdProducto == 0)
+{
+    <h1>Nuevo Producto</h1>
+
+}
+else
+{
+    <h1>Editar Producto</h1>
+}
+ 
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="ProductoDetalle" asp-asp-controller="Home" method="post">
+            <input type="hidden" asp-for="idProducto.IdProducto"/>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.Nombre">Nombre</label>
+                <input class="form-control form-control-sm" asp-for="idProducto.Nombre" type="text"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.PrecioMayor">Precio Mayor</label>
+                <input class="form-control form-control-sm" asp-for="idProducto.PrecioMayor" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.PrecioMenor">Precio Menor</label>
+                <input class="form-control form-control-sm" asp-for="idProducto.PrecioMenor" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.Cantidad">Cantidad</label>
+                <input class="form-control form-control-sm" asp-for="idProducto.Cantidad" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.IdDist">Tipo Distribución</label>
+                <select class="form-control form-select-sm" asp-for="idProducto.IdDist" asp-items="@Model.selectListTipoDist">
+                    <option selected disabled>--Seleccionar--</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.IdEstiba">Nombre de Estiba</label>
+                <select class="form-control form-select-sm" asp-for="idProducto.IdEstiba" asp-items="@Model.selectListEstiba">
+                    <option selected disabled>--Seleccionar--</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <label class="form-control" asp-for="idProducto.IdTipoProd">Descripcion</label>
+                <select class="form-control form-select-sm" asp-for="idProducto.IdTipoProd" asp-items="@Model.selectListTipoProd">
+                    <option selected disabled>--Seleccionar--</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                @if (Model.idProducto.IdProducto == 0)
+                {
+                   <button class="btn-primary btn-sm w-25" type="submit">Crear</button> 
+                }
+                else{
+                    <button class="btn-primary btn-sm w-25" type="submit">Actualizar</button>
+                }
+                <a class="btn btn-success btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+            </div>
+        </form>
+    </div>
+</di>

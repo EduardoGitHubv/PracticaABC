@@ -1,0 +1,43 @@
+﻿@model List<PracticaABC.Models.ProductoDistribucion>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lita de Productos</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="ProductoDetalle" asp-controller="Home" asp-route-IdProducto="0">Agregar Nuevo</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio Mayor</th>
+                    <th>Precio Detal</th>
+                    <th>Cantidad</th>
+                    <th>Tipo Distribución</th>
+                    <th>Nombre de Estiba</th>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.PrecioMayor</td>
+                        <td>@item.PrecioMenor</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.IdDistNavigation.Nombre</td>
+                        <td>@item.IdEstibaNavigation.Nombre</td>
+                        <td>@item.IdTipoProdNavigation.Descripcion</td>
+                        <td><a  class="btn btn-primary btn-sm" asp-action="ProductoDetalle" asp-controller="Home" asp-route-idProducto="@item.IdProducto">Editar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
